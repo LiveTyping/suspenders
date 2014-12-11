@@ -1,12 +1,18 @@
-development: &default
+default: &default
   adapter: postgresql
-  database: <%= app_name %>_development
-  encoding: utf8
-  host: localhost
-  min_messages: warning
+  encoding: unicode
   pool: 2
-  timeout: 5000
+
+development:
+  <<: *default
+  database: <%= app_name %>_development
 
 test:
   <<: *default
   database: <%= app_name %>_test
+
+production:
+  <<: *default
+  database: <%= app_name %>_production
+  username: <%= ENV["#{app_name.upcase}_DATABASE_USER"] %>
+  password: <%= ENV["#{app_name.upcase}_DATABASE_PASSWORD"] %>

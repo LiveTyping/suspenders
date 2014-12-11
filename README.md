@@ -67,7 +67,7 @@ And development gems like:
 And testing gems like:
 
 * [Capybara](https://github.com/jnicklas/capybara) and
-  [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
+  [Poltergeist](https://github.com/teampoltergeist/poltergeist) for
   integration testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for test data
 * [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
@@ -155,11 +155,6 @@ Snow Leopard (OS X 10.6).
 
 Use [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)
 for Lion (OS X 10.7) or Mountain Lion (OS X 10.8).
-
-We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
-full-stack JavaScript integration testing. It requires QT. Instructions for
-installing QT are
-[here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 

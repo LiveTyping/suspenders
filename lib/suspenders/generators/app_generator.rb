@@ -31,6 +31,7 @@ module Suspenders
       invoke :setup_coffeescript
       invoke :configure_app
       invoke :setup_stylesheets
+      invoke :setup_javascripts
       invoke :install_bitters
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
@@ -136,6 +137,11 @@ module Suspenders
     def setup_stylesheets
       say 'Set up stylesheets'
       build :setup_stylesheets
+    end
+
+    def setup_javascripts
+      say 'Set up javascripts'
+      build :setup_javascripts
     end
 
     def install_bitters

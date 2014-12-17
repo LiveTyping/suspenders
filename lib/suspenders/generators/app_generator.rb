@@ -22,6 +22,7 @@ module Suspenders
 
     def suspenders_customization
       invoke :customize_gemfile
+      invoke :setup_simple_form
       invoke :setup_development_environment
       invoke :setup_test_environment
       invoke :setup_production_environment
@@ -62,6 +63,11 @@ module Suspenders
       end
 
       build :create_database
+    end
+
+    def setup_simple_form
+      say 'Setting up the simple form gem'
+      build :configure_simple_form
     end
 
     def setup_development_environment

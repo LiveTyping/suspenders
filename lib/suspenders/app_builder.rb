@@ -46,6 +46,10 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
+    def configure_simple_form
+      run 'rails g simple_form:install --bootstrap'
+    end
+
     def set_up_factory_girl_for_rspec
       copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
     end

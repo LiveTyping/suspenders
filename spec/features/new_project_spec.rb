@@ -34,7 +34,7 @@ feature 'Suspend a new project with default configuration' do
 
     secrets_file = IO.read("#{project_path}/config/secrets.yml")
 
-    expect(secrets_file).to match(/secret_key_base: <%= ENV\["SECRET_KEY_BASE"\] %>/)
+    expect(secrets_file).to match(/secret_key_base: <%= ENV\['SECRET_KEY_BASE'\] %>/)
   end
 
   scenario 'action mailer support file is added' do

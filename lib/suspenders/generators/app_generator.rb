@@ -31,7 +31,6 @@ module Suspenders
       invoke :configure_app
       invoke :setup_stylesheets
       invoke :setup_javascripts
-      invoke :install_bitters
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
@@ -136,11 +135,6 @@ module Suspenders
     def setup_javascripts
       say 'Set up javascripts'
       build :setup_javascripts
-    end
-
-    def install_bitters
-      say 'Install Bitters'
-      build :install_bitters
     end
 
     def setup_git

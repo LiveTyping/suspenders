@@ -10,6 +10,12 @@ module SuspendersTestHelpers
   end
 
   def run_suspenders(arguments = nil)
+    drop_dummy_database
+    remove_project_directory
+
+    FakeHeroku.clear!
+    FakeGithub.clear!
+
     Dir.chdir(tmp_path) do
       Bundler.with_clean_env do
         ENV['TESTING'] = '1'

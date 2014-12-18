@@ -14,7 +14,6 @@ module SuspendersTestHelpers
     remove_project_directory
 
     FakeHeroku.clear!
-    FakeGithub.clear!
 
     Dir.chdir(tmp_path) do
       Bundler.with_clean_env do

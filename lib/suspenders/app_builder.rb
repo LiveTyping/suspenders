@@ -237,10 +237,6 @@ end
       generate 'rspec:install'
     end
 
-    def configure_unicorn
-      copy_file 'unicorn.rb', 'config/unicorn.rb'
-    end
-
     def setup_foreman
       copy_file 'sample.env', '.sample.env'
       copy_file 'Procfile', 'Procfile'

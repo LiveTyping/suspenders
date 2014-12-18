@@ -6,7 +6,7 @@ module Suspenders
     class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
       :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
 
-    class_option :locale, :type => :boolean, :aliases => '-L', :default => 'ru',
+    class_option :locale, :type => :string, :aliases => '-L', :default => 'ru',
       :desc => 'Set deafult locale'
 
     class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,

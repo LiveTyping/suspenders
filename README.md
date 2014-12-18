@@ -48,6 +48,7 @@ It includes application gems like:
 * [Puma](https://github.com/puma/puma) to serve HTTP requests
 * [Figaro](https://github.com/laserlemon/figaro) for loading environment variables
 * [Slim](https://github.com/slim-template/slim-rails) as a template language
+* [Evil Front Rails](https://github.com/ai/evil-front) for applying basic front-end settings
 
 And development gems like:
 

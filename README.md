@@ -120,18 +120,6 @@ bypass this with the `--skip-git` option:
 
     suspenders app --skip-git true
 
-## GitHub
-
-You can optionally create a GitHub repository for the suspended Rails app. It
-requires that you have [Hub](https://github.com/github/hub) on your system:
-
-    curl http://hub.github.com/standalone -sLo ~/bin/hub && chmod +x ~/bin/hub
-    suspenders app --github organization/project
-
-This has the same effect as running:
-
-    hub create organization/project
-
 ## Dependencies
 
 Suspenders requires the latest version of Ruby.

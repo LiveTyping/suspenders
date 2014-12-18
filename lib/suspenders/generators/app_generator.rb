@@ -39,7 +39,6 @@ module Suspenders
       invoke :setup_figaro
       invoke :setup_database
       invoke :create_heroku_apps
-      invoke :create_github_repo
       invoke :setup_bundler_audit
       invoke :outro
     end
@@ -162,13 +161,6 @@ module Suspenders
         build :set_heroku_rails_secrets
         build :set_memory_management_variable
         build :provide_deploy_script
-      end
-    end
-
-    def create_github_repo
-      if !options[:skip_git] && options[:github]
-        say 'Creating Github repo'
-        build :create_github_repo, options[:github]
       end
     end
 

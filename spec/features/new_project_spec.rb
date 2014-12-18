@@ -83,10 +83,17 @@ feature 'Suspend a new project with default configuration' do
     expect(File).to exist("#{project_path}/config/i18n-tasks.yml")
   end
 
-  scenario "generated en.yml is evaluated" do
-    locales_en_file = IO.read("#{project_path}/config/locales/en.yml")
+  scenario "generated ru.yml and inserted gem russian" do
+    expect(File).not_to exist("#{project_path}/config/locales/en.yml")
+    expect(File).to exist("#{project_path}/config/locales/ru.yml")
+
+    locales_file = IO.read("#{project_path}/config/locales/ru.yml")
     app_name = SuspendersTestHelpers::APP_NAME
 
-    expect(locales_en_file).to match(/application: #{app_name.humanize}/)
+    expect(locales_file).to match(/application: #{app_name.humanize}/)
+
+    gemfile = IO.read("#{project_path}/Gemfile")
+
+    expect(gemfile).to match(/gem 'russian'/)
   end
 end

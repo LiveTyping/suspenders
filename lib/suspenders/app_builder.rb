@@ -72,6 +72,23 @@ module Suspenders
         :after => 'config.action_mailer.raise_delivery_errors = false'
     end
 
+    def setup_default_locale
+      locale = default_locale
+      remove_file 'config/locales/en.yml'
+
+      case locale
+      when 'ru'
+        append_file 'Gemfile', "\n  gem 'russian', '~> 0.6.0'"
+      end
+
+      replace_in_file 'config/application.rb',
+        '# config.i18n.default_locale = :de',
+        "config.i18n.default_locale = :#{locale}"
+
+      template "config_locales.yml.erb",
+               "config/locales/#{locale}.yml"
+    end
+
     def enable_rack_deflater
       config = <<-RUBY
 
@@ -169,6 +186,7 @@ end
       remove_file "spec/spec_helper.rb"
       copy_file "rails_helper.rb", "spec/rails_helper.rb"
       copy_file "spec_helper.rb", "spec/spec_helper.rb"
+      replace_in_file '.rspec', /\n\-\-warnings/, ''
     end
 
     def configure_i18n_for_test_environment
@@ -182,7 +200,7 @@ end
 
     def configure_i18n_tasks
       run "cp $(i18n-tasks gem-path)/templates/rspec/i18n_spec.rb spec/"
-      copy_file "config_i18n_tasks.yml", "config/i18n-tasks.yml"
+      template 'config_i18n_tasks.yml.erb', 'config/i18n-tasks.yml'
     end
 
     def configure_background_jobs_for_rspec
@@ -200,11 +218,6 @@ end
       RUBY
 
       inject_into_class 'config/application.rb', 'Application', config
-    end
-
-    def configure_time_formats
-      remove_file "config/locales/en.yml"
-      template "config_locales_en.yml.erb", "config/locales/en.yml"
     end
 
     def configure_rack_timeout

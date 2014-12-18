@@ -95,6 +95,12 @@ Suspenders also comes with:
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
 
+## Locale
+
+You can optionally specify which locale you want to use in application (default value us `ru`):
+
+    suspenders app --locale en
+
 ## Heroku
 
 You can optionally create Heroku staging and production apps:

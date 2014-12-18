@@ -6,8 +6,8 @@ module Suspenders
     class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
       :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
 
-    class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
-      :desc => 'Create staging and production Heroku apps'
+    class_option :locale, :type => :boolean, :aliases => '-L', :default => 'ru',
+      :desc => 'Set deafult locale'
 
     class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
       :desc => 'Skip Test::Unit files'
@@ -44,11 +44,18 @@ module Suspenders
       build :replace_gemfile
       build :set_ruby_to_version_being_used
 
+      invoke :setup_default_locale
+
       if options[:heroku]
         build :setup_heroku_specific_gems
       end
 
       bundle_command 'install'
+    end
+
+    def setup_default_locale
+      say 'Setting up default locale'
+      build :setup_default_locale
     end
 
     def setup_database
@@ -123,7 +130,6 @@ module Suspenders
       say 'Configuring app'
       build :configure_action_mailer
       build :configure_time_zone
-      build :configure_time_formats
       build :configure_rack_timeout
       build :disable_xml_params
       build :fix_i18n_deprecation_warning
@@ -197,6 +203,10 @@ module Suspenders
     end
 
     protected
+
+    def default_locale
+      options[:locale]
+    end
 
     def get_builder_class
       Suspenders::AppBuilder

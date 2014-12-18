@@ -1,4 +1,7 @@
-en:
+<%= default_locale %>:
+  titles:
+    application: <%= app_name.humanize %>
+  <% if default_locale == 'en' %>
   date:
     formats:
       default:
@@ -14,6 +17,4 @@ en:
         "%b %-d, %Y"
       short:
         "%B %d"
-
-  titles:
-    application: <%= app_name.humanize %>
+  <% end %>

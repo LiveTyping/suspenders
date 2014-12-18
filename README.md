@@ -88,8 +88,6 @@ Suspenders also comes with:
 * An automatically-created `SECRET_KEY_BASE` environment variable in all
   environments
 * Configuration for [Travis Pro][travis] continuous integration
-* The analytics adapter [Segment][segment] (and therefore config for Google
-  Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
 
 [setup]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
@@ -97,7 +95,6 @@ Suspenders also comes with:
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
 [travis]: http://docs.travis-ci.com/user/travis-pro/
-[segment]: https://segment.io
 
 ## Heroku
 

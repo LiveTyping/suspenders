@@ -47,6 +47,7 @@ It includes application gems like:
   translations
 * [Puma](https://github.com/puma/puma) to serve HTTP requests
 * [Figaro](https://github.com/laserlemon/figaro) for loading environment variables
+* [Slim](https://github.com/slim-template/slim-rails) as a template language
 
 And development gems like:
 

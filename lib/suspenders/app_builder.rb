@@ -47,7 +47,7 @@ module Suspenders
     end
 
     def configure_simple_form
-      run 'rails g simple_form:install --bootstrap'
+      generate 'simple_form:install --bootstrap'
     end
 
     def set_up_factory_girl_for_rspec
@@ -194,7 +194,7 @@ end
 
     def configure_background_jobs_for_rspec
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
-      run 'rails g delayed_job:active_record'
+      generate 'delayed_job:active_record'
     end
 
     def configure_action_mailer_in_specs

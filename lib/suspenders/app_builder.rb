@@ -1,3 +1,6 @@
+require 'active_support/core_ext/date'
+require 'active_support/core_ext/integer'
+
 module Suspenders
   class AppBuilder < Rails::AppBuilder
     include Suspenders::Actions
@@ -17,11 +20,6 @@ module Suspenders
       RUBY
 
       inject_into_class "config/application.rb", "Application", config
-    end
-
-    def provide_setup_script
-      template 'bin_setup.erb', 'bin/setup', port_number: port_number
-      run 'chmod a+x bin/setup'
     end
 
     def provide_dev_prime_task
@@ -87,16 +85,16 @@ module Suspenders
 
     def setup_asset_host
       replace_in_file 'config/environments/production.rb',
-        '# config.action_controller.asset_host = "http://assets.example.com"',
-        'config.action_controller.asset_host = ENV.fetch("ASSET_HOST")'
-
-      replace_in_file 'config/initializers/assets.rb',
-        "config.assets.version = '1.0'",
-        'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
+        "# config.action_controller.asset_host = 'http://assets.example.com'",
+        "config.action_controller.asset_host = ENV.fetch('ASSET_HOST')"
 
       replace_in_file 'config/environments/production.rb',
         'config.serve_static_assets = false',
-        'config.static_cache_control = "public, max-age=#{1.year.to_i}"'
+        "config.static_cache_control = 'public, max-age=#{1.years.ago}'"
+
+      replace_in_file 'config/initializers/assets.rb',
+        "config.assets.version = '1.0'",
+        "config.assets.version = (ENV['ASSETS_VERSION'] || '1.0')"
     end
 
     def setup_staging_environment
@@ -237,7 +235,6 @@ end
     end
 
     def setup_foreman
-      copy_file 'sample.env', '.sample.env'
       copy_file 'Procfile', 'Procfile'
     end
 

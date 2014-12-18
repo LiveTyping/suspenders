@@ -36,6 +36,7 @@ module Suspenders
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
       invoke :setup_git
+      invoke :setup_figaro
       invoke :setup_database
       invoke :create_heroku_apps
       invoke :create_github_repo
@@ -68,6 +69,11 @@ module Suspenders
     def setup_simple_form
       say 'Setting up the simple form gem'
       build :configure_simple_form
+    end
+
+    def setup_figaro
+      say 'Setting up figaro gem'
+      build :setup_figaro
     end
 
     def setup_development_environment

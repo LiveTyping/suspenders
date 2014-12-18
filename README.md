@@ -46,10 +46,10 @@ It includes application gems like:
 * [Title](https://github.com/calebthompson/title) for storing titles in
   translations
 * [Puma](https://github.com/puma/puma) to serve HTTP requests
+* [Figaro](https://github.com/laserlemon/figaro) for loading environment variables
 
 And development gems like:
 
-* [Dotenv](https://github.com/bkeepers/dotenv) for loading environment variables
 * [Pry Rails](https://github.com/rweng/pry-rails) for interactively exploring
   objects
 * [ByeBug](https://github.com/deivid-rodriguez/byebug) for interactively

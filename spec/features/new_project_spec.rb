@@ -41,7 +41,13 @@ feature 'Suspend a new project with default configuration' do
     expect(File).to exist("#{project_path}/spec/support/i18n.rb")
   end
 
+  scenario 'figaro gem is configured' do
+    expect(File).to exist("#{project_path}/config/application.example.yml")
 
+    application_yml_file = IO.read("#{project_path}/config/application.yml")
+
+    expect(application_yml_file).to match(/SECRET_KEY_BASE: \S+/)
+  end
 
   scenario 'newrelic.yml reads NewRelic license from env' do
     newrelic_file = IO.read("#{project_path}/config/newrelic.yml")

@@ -341,6 +341,13 @@ you can deploy to staging and production with:
         'app/views/application/_analytics.html.erb'
     end
 
+    def setup_figaro
+      copy_file 'application.example.yml', 'config/application.example.yml'
+      copy_file 'application.example.yml', 'config/application.yml'
+      replace_in_file 'config/application.yml', /<SECRET_KEY_BASE>/, generate_secret
+      append_file '.gitignore', %{\n/config/application.yml\n}
+    end
+
     def setup_bundler_audit
       copy_file "bundler_audit.rake", "lib/tasks/bundler_audit.rake"
       append_file "Rakefile", %{\ntask default: "bundler:audit"\n}

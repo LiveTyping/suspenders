@@ -17,7 +17,7 @@ feature 'Suspend a new project with default configuration' do
     staging_file = IO.read("#{project_path}/config/environments/staging.rb")
     config_stub = "Rails.application.configure do"
 
-    expect(staging_file).to match(/^require_relative "production"/)
+    expect(staging_file).to match(/^require_relative 'production'/)
     expect(staging_file).to match(/#{config_stub}/), staging_file
   end
 
@@ -75,6 +75,12 @@ feature 'Suspend a new project with default configuration' do
     end
   end
 
+  scenario 'installs annotate' do
+    expect(File).to exist("#{project_path}/lib/tasks/auto_annotate_models.rake")
+
+    expect(gemfile).to match(/gem 'annotate'/)
+  end
+
   scenario "specs for missing or unused translations" do
     expect(File).to exist("#{project_path}/spec/i18n_spec.rb")
   end
@@ -92,8 +98,10 @@ feature 'Suspend a new project with default configuration' do
 
     expect(locales_file).to match(/application: #{app_name.humanize}/)
 
-    gemfile = IO.read("#{project_path}/Gemfile")
-
     expect(gemfile).to match(/gem 'russian'/)
+  end
+
+  def gemfile
+    @gemfile ||= IO.read("#{project_path}/Gemfile")
   end
 end

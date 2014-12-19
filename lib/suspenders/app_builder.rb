@@ -114,6 +114,10 @@ module Suspenders
         "config.assets.version = (ENV['ASSETS_VERSION'] || '1.0')"
     end
 
+    def setup_annotate
+      copy_file 'auto_annotate_models.rake', 'lib/tasks/auto_annotate_models.rake'
+    end
+
     def setup_staging_environment
       staging_file = 'config/environments/staging.rb'
       copy_file 'staging.rb', staging_file
@@ -186,7 +190,6 @@ end
       remove_file "spec/spec_helper.rb"
       copy_file "rails_helper.rb", "spec/rails_helper.rb"
       copy_file "spec_helper.rb", "spec/spec_helper.rb"
-      replace_in_file '.rspec', /\n\-\-warnings/, ''
     end
 
     def configure_rubocop

@@ -1,0 +1,18 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'spec/i18n_spec.rb'
+Style/Encoding:
+  Enabled: false
+Metrics/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 21
+Style/Documentation:
+  Enabled: false
+Style/GlobalVars:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false

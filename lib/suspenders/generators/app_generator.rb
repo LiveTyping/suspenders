@@ -35,6 +35,7 @@ module Suspenders
       invoke :setup_git
       invoke :setup_figaro
       invoke :setup_database
+      invoke :configure_rubocop
       invoke :create_heroku_apps
       invoke :setup_bundler_audit
       invoke :outro
@@ -135,6 +136,11 @@ module Suspenders
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
       build :setup_foreman
+    end
+
+    def configure_rubocop
+      say 'Configuring rubocop'
+      build :configure_rubocop
     end
 
     def setup_stylesheets

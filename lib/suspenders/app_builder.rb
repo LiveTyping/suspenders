@@ -189,6 +189,10 @@ end
       replace_in_file '.rspec', /\n\-\-warnings/, ''
     end
 
+    def configure_rubocop
+      copy_file 'rubocop.yml', '.rubocop.yml'
+    end
+
     def configure_i18n_for_test_environment
       copy_file "i18n.rb", "spec/support/i18n.rb"
     end

@@ -101,7 +101,7 @@ module Suspenders
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
-        :after => "config.serve_static_assets = false\n"
+        :after => "config.serve_static_files = false\n"
     end
 
     def setup_asset_host
@@ -110,7 +110,7 @@ module Suspenders
         "config.action_controller.asset_host = ENV.fetch('ASSET_HOST')"
 
       replace_in_file 'config/environments/production.rb',
-        'config.serve_static_assets = false',
+        'config.serve_static_files = false',
         "config.static_cache_control = 'public, max-age=#{1.years.ago}'"
 
       replace_in_file 'config/initializers/assets.rb',

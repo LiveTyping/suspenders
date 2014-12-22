@@ -52,6 +52,10 @@ module Suspenders
       copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
     end
 
+    def setup_custom_requests_helpers_for_rspec
+      copy_file 'rspec_requests_helpers.rb', 'spec/support/requests_helpers.rb'
+    end
+
     def configure_newrelic
       template 'newrelic.yml.erb', 'config/newrelic.yml'
     end

@@ -111,7 +111,7 @@ module Suspenders
 
       replace_in_file 'config/environments/production.rb',
         'config.serve_static_files = false',
-        "config.static_cache_control = 'public, max-age=#{1.years.ago}'"
+        "config.static_cache_control = 'public, max-age=#{1.years.ago.to_i}'"
 
       replace_in_file 'config/initializers/assets.rb',
         "config.assets.version = '1.0'",

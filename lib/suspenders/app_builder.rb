@@ -95,23 +95,18 @@ module Suspenders
 
     def enable_rack_deflater
       config = <<-RUBY
-
-  # Enable deflate / gzip compression of controller-generated responses
+\n  # Enable deflate / gzip compression of controller-generated responses
   config.middleware.use Rack::Deflater
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
-        :after => "config.serve_static_files = false\n"
+        :before => "\n  # Disable serving static files"
     end
 
     def setup_asset_host
       replace_in_file 'config/environments/production.rb',
         "# config.action_controller.asset_host = 'http://assets.example.com'",
         "config.action_controller.asset_host = ENV.fetch('ASSET_HOST')"
-
-      replace_in_file 'config/environments/production.rb',
-        'config.serve_static_files = false',
-        "config.static_cache_control = 'public, max-age=#{1.years.ago.to_i}'"
 
       replace_in_file 'config/initializers/assets.rb',
         "config.assets.version = '1.0'",

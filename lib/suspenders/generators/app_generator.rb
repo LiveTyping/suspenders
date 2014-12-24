@@ -36,7 +36,6 @@ module Suspenders
       invoke :setup_figaro
       invoke :setup_database
       invoke :configure_rubocop
-      invoke :create_heroku_apps
       invoke :setup_bundler_audit
       invoke :outro
     end
@@ -46,10 +45,6 @@ module Suspenders
       build :set_ruby_to_version_being_used
 
       invoke :setup_default_locale
-
-      if options[:heroku]
-        build :setup_heroku_specific_gems
-      end
 
       bundle_command 'install'
     end
@@ -160,17 +155,6 @@ module Suspenders
         say 'Initializing git'
         invoke :setup_gitignore
         invoke :init_git
-      end
-    end
-
-    def create_heroku_apps
-      if options[:heroku]
-        say 'Creating Heroku apps'
-        build :create_heroku_apps
-        build :set_heroku_remotes
-        build :set_heroku_rails_secrets
-        build :set_memory_management_variable
-        build :provide_deploy_script
       end
     end
 

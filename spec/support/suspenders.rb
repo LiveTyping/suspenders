@@ -13,8 +13,6 @@ module SuspendersTestHelpers
     drop_dummy_database
     remove_project_directory
 
-    FakeHeroku.clear!
-
     Dir.chdir(tmp_path) do
       Bundler.with_clean_env do
         ENV['TESTING'] = '1'

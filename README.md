@@ -79,7 +79,6 @@ And testing gems like:
 Suspenders also comes with:
 
 * The [`./bin/setup`][setup] convention for new developer setup
-* The `./bin/deploy` convention for deploying to Heroku
 * Rails' flashes set up and in application layout
 * A few nice time formats set up for localization
 * `Rack::Deflater` to [compress responses with Gzip][compress]
@@ -100,21 +99,6 @@ Suspenders also comes with:
 You can optionally specify which locale you want to use in application (default value us `ru`):
 
     suspenders app --locale en
-
-## Heroku
-
-You can optionally create Heroku staging and production apps:
-
-    suspenders app --heroku true
-
-This:
-
-* Creates a staging and production Heroku app
-* Sets them as `staging` and `production` Git remotes
-* Configures staging with `RACK_ENV` and `RAILS_ENV` environment variables set
-  to `staging`
-* Adds the [Rails 12 Factor](https://github.com/heroku/rails_12factor) gem
-  to make running Rails 4 apps easier on Heroku
 
 ## Git
 

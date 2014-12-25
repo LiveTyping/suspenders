@@ -14,14 +14,6 @@ module Suspenders
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
     end
 
-    def raise_on_unpermitted_parameters
-      config = <<-RUBY
-    config.action_controller.action_on_unpermitted_parameters = :raise
-      RUBY
-
-      inject_into_class "config/application.rb", "Application", config
-    end
-
     def provide_dev_prime_task
       copy_file 'development_seeds.rb', 'lib/tasks/development_seeds.rake'
     end

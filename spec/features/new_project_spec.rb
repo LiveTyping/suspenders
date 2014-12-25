@@ -57,14 +57,6 @@ feature 'Suspend a new project with default configuration' do
     )
   end
 
-  scenario "raises on unpermitted parameters in all environments" do
-    result = IO.read("#{project_path}/config/application.rb")
-
-    expect(result).to match(
-      /^ +config.action_controller.action_on_unpermitted_parameters = :raise$/
-    )
-  end
-
   scenario "raises on missing translations in development and test" do
     %w[development test].each do |environment|
       environment_file =

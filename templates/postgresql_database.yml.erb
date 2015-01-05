@@ -5,14 +5,21 @@ default: &default
 
 development:
   <<: *default
-  database: <%= app_name %>_development
+  database: <%= app_name.downcase %>_development
 
 test:
   <<: *default
-  database: <%= app_name %>_test
+  database: <%= app_name.downcase %>_test
+
+staging:
+  <<: *default
+  database: <%= app_name.downcase %>_staging
+  username: <%%= ENV["<%= app_name.upcase %>_DATABASE_USER"] %>
+  password: <%%= ENV["<%= app_name.upcase %>_DATABASE_PASSWORD"] %>
 
 production:
   <<: *default
-  database: <%= app_name %>_production
-  username: <%= ENV["#{app_name.upcase}_DATABASE_USER"] %>
-  password: <%= ENV["#{app_name.upcase}_DATABASE_PASSWORD"] %>
+  pool: 10
+  database: <%= app_name.downcase %>_production
+  username: <%%= ENV["<%= app_name.upcase %>_DATABASE_USER"] %>
+  password: <%%= ENV["<%= app_name.upcase %>_DATABASE_PASSWORD"] %>

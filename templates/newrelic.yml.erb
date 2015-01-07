@@ -1,5 +1,5 @@
 common: &default_settings
-  app_name: "<%= app_name %>"
+  app_name: '<%= app_name %>'
   audit_log:
     enabled: false
   browser_monitoring:
@@ -30,5 +30,5 @@ production:
   monitor_mode: true
 staging:
   <<: *default_settings
-  app_name: "<%= app_name %> (Staging)"
+  app_name: '<%= app_name %> (Staging)'
   monitor_mode: true

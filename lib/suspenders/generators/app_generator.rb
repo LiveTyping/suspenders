@@ -3,14 +3,20 @@ require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
-    class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
-      :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
+    class_option :database, type: :string, aliases: "-d", default: "postgresql",
+      desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
     class_option :locale, :type => :string, :aliases => '-L', :default => 'ru',
       :desc => 'Set deafult locale'
 
-    class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
-      :desc => 'Skip Test::Unit files'
+    class_option :skip_test_unit, type: :boolean, aliases: "-T", default: true,
+      desc: "Skip Test::Unit files"
+
+    class_option :skip_turbolinks, type: :boolean, default: false,
+      desc: "Skip turbolinks gem"
+
+    class_option :skip_bundle, type: :boolean, aliases: "-B", default: true,
+      desc: "Don't run bundle install"
 
     def finish_template
       invoke :suspenders_customization
@@ -77,6 +83,7 @@ module Suspenders
     def setup_development_environment
       say 'Setting up the development environment'
       build :raise_on_delivery_errors
+      build :set_test_delivery_method
       build :provide_dev_prime_task
       build :configure_generators
       build :configure_i18n_for_missing_translations
@@ -128,6 +135,7 @@ module Suspenders
       build :configure_action_mailer
       build :configure_time_zone
       build :configure_rack_timeout
+      build :configure_simple_form
       build :disable_xml_params
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
@@ -187,10 +195,6 @@ module Suspenders
     def outro
       say 'Congratulations! You just pulled our suspenders.'
       say "Remember to run 'rails generate airbrake' with your API key."
-    end
-
-    def run_bundle
-      # Let's not: We'll bundle manually at the right spot
     end
 
     protected

@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.1.5
+  - 2.2.0
 before_install:
   - "echo '--colour' > ~/.rspec"
   - git config --global user.name 'Travis CI'
@@ -10,3 +10,4 @@ install:
   - bundle install
 notifications:
   email: false
+sudo: false

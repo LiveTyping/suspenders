@@ -30,8 +30,8 @@ It includes application gems like:
   processing
 * [Email Validator](https://github.com/balexand/email_validator) for email
   validation
-* [Flutie](https://github.com/thoughtbot/flutie) for and `body_class` view
-  helper
+* [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
+  helpers
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [jQuery Rails](https://github.com/rails/jquery-rails) for jQuery
 * [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
@@ -59,6 +59,8 @@ And development gems like:
   Gemfile for insecure dependencies based on published CVEs
 * [Spring](https://github.com/rails/spring) for fast Rails actions via
   pre-loading
+* [Web Console](https://github.com/rails/web-console) for better debugging via
+  in-browser IRB consoles.
 
 And testing gems like:
 
@@ -129,9 +131,7 @@ If you have problems, please create a
 
 ## Contributing
 
-To update Suspenders' Ruby version, change `.ruby-version` and `.travis.yml`.
-
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for further details.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Credits
 

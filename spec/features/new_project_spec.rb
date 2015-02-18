@@ -53,7 +53,7 @@ feature 'Suspend a new project with default configuration' do
     newrelic_file = IO.read("#{project_path}/config/newrelic.yml")
 
     expect(newrelic_file).to match(
-      /license_key: "<%= ENV\["NEW_RELIC_LICENSE_KEY"\] %>"/
+      /license_key: "<%= ENV\['NEW_RELIC_LICENSE_KEY'\] %>"/
     )
   end
 
@@ -91,6 +91,16 @@ feature 'Suspend a new project with default configuration' do
     expect(locales_file).to match(/application: #{app_name.humanize}/)
 
     expect(gemfile).to match(/gem 'russian'/)
+  end
+
+  scenario "config simple_form" do
+    expect(File).to exist("#{project_path}/config/initializers/simple_form.rb")
+  end
+
+  scenario "config :test email delivery method for development" do
+    dev_env_file = IO.read("#{project_path}/config/environments/development.rb")
+    expect(dev_env_file).
+      to match(/^ +config.action_mailer.delivery_method = :test$/)
   end
 
   def gemfile

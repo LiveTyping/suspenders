@@ -9,9 +9,23 @@ module Suspenders
       template 'README.md.erb', 'README.md'
     end
 
+    # inject_into_file(
+    #   "config/environments/production.rb",
+    #   '  config.static_cache_control = "public, max-age=#{1.year.to_i}"',
+    #   after: serve_static_files_line
+    # )
+
     def raise_on_delivery_errors
       replace_in_file 'config/environments/development.rb',
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
+    end
+
+    def set_test_delivery_method
+      inject_into_file(
+        "config/environments/development.rb",
+        "\n  config.action_mailer.delivery_method = :test",
+        after: "config.action_mailer.raise_delivery_errors = true",
+      )
     end
 
     def provide_dev_prime_task
@@ -91,8 +105,14 @@ module Suspenders
   config.middleware.use Rack::Deflater
       RUBY
 
-      inject_into_file 'config/environments/production.rb', config,
-        :before => "\n  # Disable serving static files"
+      # inject_into_file 'config/environments/production.rb', config,
+      #   :before => "\n  # Disable serving static files"
+
+      inject_into_file(
+        'config/environments/production.rb',
+        config,
+        after: serve_static_files_line
+      )
     end
 
     def setup_asset_host
@@ -125,6 +145,10 @@ end
 
     def setup_secret_token
       template 'secrets.yml', 'config/secrets.yml', force: true
+    end
+
+    def disallow_wrapping_parameters
+      remove_file "config/initializers/wrap_parameters.rb"
     end
 
     def create_partials_directory
@@ -217,11 +241,15 @@ end
       copy_file 'rack_timeout.rb', 'config/initializers/rack_timeout.rb'
     end
 
+    def configure_simple_form
+      bundle_command "exec rails generate simple_form:install"
+    end
+
     def configure_action_mailer
-      action_mailer_host 'development', "localhost:#{port_number}"
-      action_mailer_host 'test', 'www.example.com'
-      action_mailer_host 'staging', "staging.#{app_name}.com"
-      action_mailer_host 'production', "#{app_name}.com"
+      action_mailer_host "development", %{"localhost:#{port}"}
+      action_mailer_host "test", %{"www.example.com"}
+      action_mailer_host "staging", %{ENV.fetch("HOST")}
+      action_mailer_host "production", %{ENV.fetch("HOST")}
     end
 
     def fix_i18n_deprecation_warning
@@ -353,8 +381,12 @@ end
       SecureRandom.hex(64)
     end
 
-    def port_number
-      @port_number ||= [3000, 4000, 5000, 7000, 8000, 9000].sample
+    def port
+      @port ||= [3000, 4000, 5000, 7000, 8000, 9000].sample
+    end
+
+    def serve_static_files_line
+      "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
     end
   end
 end

@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby '<%= Suspenders::RUBY_VERSION %>'
-
 gem 'rails', '<%= Suspenders::RAILS_VERSION %>'
 gem 'airbrake'
 gem 'delayed_job_active_record', '~> 4.0.3'
@@ -29,7 +27,7 @@ gem 'jquery-rails'
 gem 'coffee-rails'
 gem 'evil-front-rails'
 
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
 gem 'font-awesome-sass'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'bootstrap_helper'
@@ -49,6 +47,7 @@ group :development do
   gem 'bundler-audit'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'web-console'
 
   # Deployment tools
   gem 'capistrano3-puma', github: 'seuros/capistrano-puma', require: false

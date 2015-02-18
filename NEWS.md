@@ -1,3 +1,43 @@
+1.24.0 (February 3, 2015)
+
+* Remove things in Suspenders that Rails does for us now.
+* Document how to use the `title` view helper.
+* Improve speed of bundling in `bin/setup` script.
+* Set ENV variable to make out-of-the-box Heroku static asset experience better.
+
+1.23.0 (January 19, 2015)
+
+* Use Bourbon 4.1.0.
+* Use Neat 1.7.0.
+* Remove [parameter wrapping] for every format, including JSON.
+* Turn off TravisCI email notifications for Suspended apps.
+* Run `rake dev:prime` on CI in order to test
+  whether `bin/setup` has any regressions.
+* Fix `config.action_mailer.default_url_options`'s value.
+  It now correctly uses `ENV.fetch("HOST")` in staging
+  and production.
+
+[parameter wrapping]: http://api.rubyonrails.org/classes/ActionController/ParamsWrapper.html
+
+1.22.0 (January 11, 2015)
+
+* Allow additional
+  [Heroku flags](https://github.com/thoughtbot/suspenders#heroku)
+  such as `--addons` and `--region`.
+* Use RSpec 3.1.0.
+* Use Travis' new Docker container infrastructure
+  for builds that start sooner and run faster.
+* Improve SMTP and ActionMailer default settings.
+
+1.21.0 (January 4, 2015)
+
+* Use Ruby 2.2.0.
+* Use Rails 4.2.0.
+* Install [Refills] and Refills' "flashes" component.
+* Add `bin/deploy` script.
+
+[Refills]: http://refills.bourbon.io/components/#flashes
+
 1.20.0 (November 25, 2014)
 
 * Use Ruby 2.1.5.

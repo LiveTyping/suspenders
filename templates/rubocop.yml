@@ -2,12 +2,16 @@ AllCops:
   RunRailsCops: true
   Exclude:
     - 'spec/i18n_spec.rb'
+Metrics/AbcSize:
+  Max: 38
 Style/Encoding:
   Enabled: false
 Metrics/LineLength:
   Max: 120
 Metrics/MethodLength:
   Max: 21
+Metrics/ClassLength:
+  Max: 210
 Style/Documentation:
   Enabled: false
 Style/GlobalVars:

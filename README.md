@@ -24,7 +24,6 @@ generated projectname/Gemfile.
 
 It includes application gems like:
 
-* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Bootstrap Sass](https://github.com/twbs/bootstrap-sass) for bootstrap
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing

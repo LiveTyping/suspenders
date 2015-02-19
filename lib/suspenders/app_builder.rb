@@ -237,10 +237,6 @@ end
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def configure_rack_timeout
-      copy_file 'rack_timeout.rb', 'config/initializers/rack_timeout.rb'
-    end
-
     def configure_simple_form
       bundle_command "exec rails generate simple_form:install"
     end

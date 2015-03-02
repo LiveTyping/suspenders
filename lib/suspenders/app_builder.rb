@@ -237,10 +237,6 @@ end
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def configure_simple_form
-      bundle_command "exec rails generate simple_form:install"
-    end
-
     def configure_action_mailer
       action_mailer_host "development", %{"localhost:#{port}"}
       action_mailer_host "test", %{"www.example.com"}

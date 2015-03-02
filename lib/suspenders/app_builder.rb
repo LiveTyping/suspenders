@@ -88,7 +88,7 @@ module Suspenders
 
       case locale
       when 'ru'
-        append_file 'Gemfile', "\n  gem 'russian', '~> 0.6.0'"
+        append_file 'Gemfile', "\ngem 'russian', '~> 0.6.0'\n"
       end
 
       replace_in_file 'config/application.rb',

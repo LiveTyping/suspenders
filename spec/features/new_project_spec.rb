@@ -37,6 +37,10 @@ feature 'Suspend a new project with default configuration' do
     expect(File).to exist("#{project_path}/spec/support/action_mailer.rb")
   end
 
+  scenario ".editorconfig file is added" do
+    expect(File).to exist("#{project_path}/.editorconfig")
+  end
+
   scenario "i18n support file is added" do
     expect(File).to exist("#{project_path}/spec/support/i18n.rb")
   end

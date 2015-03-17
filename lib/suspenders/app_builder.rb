@@ -9,6 +9,10 @@ module Suspenders
       template 'README.md.erb', 'README.md'
     end
 
+    def editorconfig
+      copy_file 'editorconfig', '.editorconfig'
+    end
+
     # inject_into_file(
     #   "config/environments/production.rb",
     #   '  config.static_cache_control = "public, max-age=#{1.year.to_i}"',

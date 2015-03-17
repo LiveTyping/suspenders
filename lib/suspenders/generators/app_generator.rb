@@ -146,6 +146,11 @@ module Suspenders
       build :configure_rubocop
     end
 
+    def configure_editorconfig
+      say 'Create .editorconfig'
+      build :editorconfig
+    end
+
     def setup_stylesheets
       say 'Set up stylesheets'
       build :setup_stylesheets

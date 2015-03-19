@@ -74,7 +74,7 @@ module Suspenders
       copy_file 'smtp.rb', 'config/smtp.rb'
 
       prepend_file 'config/environments/production.rb',
-        %{require Rails.root.join("config/smtp")\n}
+        %{require Rails.root.join('config/smtp')\n}
 
       config = <<-RUBY
 
@@ -242,10 +242,10 @@ end
     end
 
     def configure_action_mailer
-      action_mailer_host "development", %{"localhost:#{port}"}
-      action_mailer_host "test", %{"www.example.com"}
-      action_mailer_host "staging", %{ENV.fetch("HOST")}
-      action_mailer_host "production", %{ENV.fetch("HOST")}
+      action_mailer_host "development", "'localhost:#{port}'"
+      action_mailer_host "test", %{'www.example.com'}
+      action_mailer_host "staging", %{ENV.fetch('HOST')}
+      action_mailer_host "production", %{ENV.fetch('HOST')}
     end
 
     def fix_i18n_deprecation_warning

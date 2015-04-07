@@ -227,6 +227,12 @@ end
     def configure_background_jobs_for_rspec
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
       generate 'delayed_job:active_record'
+
+      config = <<-RUBY
+    config.active_job.queue_adapter = :delayed_job
+      RUBY
+
+      inject_into_class 'config/application.rb', 'Application', config
     end
 
     def configure_action_mailer_in_specs

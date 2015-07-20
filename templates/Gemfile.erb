@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 gem 'rails', '<%= Suspenders::RAILS_VERSION %>'
 gem 'delayed_job_active_record', '~> 4.0.3'
@@ -82,4 +81,7 @@ group :test do
 end
 
 group :staging, :production do
+end
+
+source 'https://rails-assets.org' do
 end
